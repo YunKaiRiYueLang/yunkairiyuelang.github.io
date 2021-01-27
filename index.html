@@ -284,7 +284,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-27 11:42:08" itemprop="dateModified" datetime="2021-01-27T11:42:08+08:00">2021-01-27</time>
+        <time title="修改时间：2021-01-27 13:37:27" itemprop="dateModified" datetime="2021-01-27T13:37:27+08:00">2021-01-27</time>
       </span>
 
   
@@ -298,17 +298,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>在嵌入式图像处理中，c++读写图像往往不是那么方便，当然自己写一个图像处理的函数包含常用的几种图片格式是可以的，但是有时候行动伴随着明确的方向和目的，不可能什么都重写。</p>
-<h2 id="stb库"><a href="#stb库" class="headerlink" title="stb库"></a>stb库</h2><p>借助stb库可以方便的存取图像，（图像处理部分）它没有额外依赖，纯c编写， 可以直接加入项目的测试工程中，有这些就足够在测试和demo场景中使用了。</p>
-<p>  <strong>官方地址</strong>： <strong><a target="_blank" rel="noopener" href="https://github.com/nothings/stb">https://github.com/nothings/stb</a></strong></p>
-<h2 id="stb库的使用"><a href="#stb库的使用" class="headerlink" title="stb库的使用"></a>stb库的使用</h2><p>stb功能函数的实现全部都在对应功能的头文件中。</p>
-<p>stb_image.h：从内存/本地载入图像，支持JPG, PNG, TGA, BMP, PSD, GIF, HDR, PIC<br>stb_image_write.h：向本地写图像文件PNG, TGA, BMP</p>
-<p>还有很多其他的函数头文件，每个头文件的开头都有非常详细的说明，很容易就能知道你使用它需要做那些准备<br>基本上，使用每个头文件都需要定义适当的宏</p>
-<h2 id="stb存取图片的一个例子"><a href="#stb存取图片的一个例子" class="headerlink" title="stb存取图片的一个例子"></a>stb存取图片的一个例子</h2><p>包含<code>stb_image.h stb_image_write.h</code>方式如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STB_IMAGE_IMPLEMENTATION</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stb_image.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STB_IMAGE_WRITE_IMPLEMENTATION</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stb_image_write.h&quot;</span></span></span><br></pre></td></tr></table></figure>
-<p>一个测试函数如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stdReadWriteImage</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> filePath = <span class="string">&quot;test.bmp&quot;</span>;</span><br><span class="line">    <span class="keyword">int</span> x, y, channels_in_file, desired_channels = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> *data = stbi_load(filePath.c_str(), &amp;x, &amp;y, &amp;channels_in_file, desired_channels);</span><br><span class="line">    <span class="keyword">if</span> (!data)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;fail to read image: %s\n&quot;</span>, filePath.c_str());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">&quot;image: %s, x: %d, y: %d, channels_in_file: %d, desired_channels: %d\n&quot;</span>,</span><br><span class="line">            filePath.c_str(), x, y, channels_in_file, desired_channels);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;1\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">string</span> storeFilePath = <span class="string">&quot;/mnt/bjwang/stbTest.bmp&quot;</span>;</span><br><span class="line">    <span class="keyword">int</span> width_resize = x;</span><br><span class="line">    <span class="keyword">int</span> height_resize = y;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> *outputPixel = data;</span><br><span class="line">    <span class="keyword">int</span> ret = stbi_write_png(storeFilePath.c_str(), width_resize, height_resize, desired_channels, outputPixel, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;fail to write image png: %s\n&quot;</span>, storeFilePath.c_str());</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;2\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(data);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>stb库非常好用，github也蛮多星的，它还提供其他的头文件，由于其他领域。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/26/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
