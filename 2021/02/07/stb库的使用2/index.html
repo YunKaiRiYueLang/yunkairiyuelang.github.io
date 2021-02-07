@@ -22,20 +22,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="一点一点写">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://example.com/categories/index.html">
+  <meta name="description" content="在文章stb库的使用中，提及的stb库的一些优点。它很实用，但是也有一些缺点。在存图函数中，提供的可选参数，过于简单。以下面的源码为例，存储bmp图像，无法指明像素深度，如果有存非unsigned 8 bit 像素。它使无法实现的。官方对于这个问题的态度也是：请使用其他库。因此，使用stb库并不是高枕无忧的。 1STBIWDEF int stbi_write_bmp(char const *fil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stb库的使用2">
+<meta property="og:url" content="http://example.com/2021/02/07/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A82/index.html">
 <meta property="og:site_name" content="wbj的技术博客">
-<meta property="og:description" content="一点一点写">
+<meta property="og:description" content="在文章stb库的使用中，提及的stb库的一些优点。它很实用，但是也有一些缺点。在存图函数中，提供的可选参数，过于简单。以下面的源码为例，存储bmp图像，无法指明像素深度，如果有存非unsigned 8 bit 像素。它使无法实现的。官方对于这个问题的态度也是：请使用其他库。因此，使用stb库并不是高枕无忧的。 1STBIWDEF int stbi_write_bmp(char const *fil">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-01-19T03:10:42.000Z">
-<meta property="article:modified_time" content="2021-01-19T03:13:05.189Z">
+<meta property="article:published_time" content="2021-02-07T08:12:33.000Z">
+<meta property="article:modified_time" content="2021-02-07T08:23:53.460Z">
 <meta property="article:author" content="wangbianjiang">
+<meta property="article:tag" content="stb库 存取图像">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/categories/">
+<link rel="canonical" href="http://example.com/2021/02/07/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A82/">
 
 
 <script class="page-configurations">
@@ -43,13 +44,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>categories | wbj的技术博客
-</title>
+  <title>stb库的使用2 | wbj的技术博客</title>
   
 
 
@@ -263,53 +263,97 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
       
-  
-  
 
       
 
     
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/07/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.gif">
+      <meta itemprop="name" content="wangbianjiang">
+      <meta itemprop="description" content="一点一点写">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wbj的技术博客">
+    </span>
+
     
     
-    <div class="post-block" lang="zh-Hans">
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          stb库的使用2
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">categories
-</h1>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-<div class="post-meta-container">
+      <time title="创建时间：2021-02-07 16:12:33 / 修改时间：16:23:53" itemprop="dateCreated datePublished" datetime="2021-02-07T16:12:33+08:00">2021-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7-%E5%BC%80%E6%BA%90%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">工具-开源库</span></a>
+        </span>
+    </span>
+
   
-
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-  <div class="category-all-title">
-    目前共计 1 个分类
-  </div>
-  <div class="category-all">
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7-%E5%BC%80%E6%BA%90%E5%BA%93/">工具-开源库</a><span class="category-list-count">2</span></li></ul>
-  </div>
-</div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在文章stb库的使用中，提及的stb库的一些优点。它很实用，但是也有一些缺点。<br>在存图函数中，提供的可选参数，过于简单。<br>以下面的源码为例，存储bmp图像，无法指明像素深度，如果有存非unsigned 8 bit 像素。它使无法实现的。官方对于这个问题的态度也是：请使用其他库。因此，使用stb库并不是高枕无忧的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">STBIWDEF <span class="keyword">int</span> <span class="title">stbi_write_bmp</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> *filename, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> comp, <span class="keyword">const</span> <span class="keyword">void</span> *data)</span></span></span><br></pre></td></tr></table></figure>
+<p>如</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/stb%E5%BA%93-%E5%AD%98%E5%8F%96%E5%9B%BE%E5%83%8F/" rel="tag"># stb库 存取图像</a>
+          </div>
 
         
-      </div>
-      
-      
-      
-    </div>
-    
 
-    
-    
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/26/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="stb库的使用">
+                  <i class="fa fa-chevron-left"></i> stb库的使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
 
 
       

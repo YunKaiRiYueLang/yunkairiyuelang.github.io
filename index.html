@@ -209,9 +209,15 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
@@ -262,6 +268,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/07/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.gif">
+      <meta itemprop="name" content="wangbianjiang">
+      <meta itemprop="description" content="一点一点写">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wbj的技术博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/07/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A82/" class="post-title-link" itemprop="url">stb库的使用2</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-02-07 16:12:33 / 修改时间：16:23:53" itemprop="dateCreated datePublished" datetime="2021-02-07T16:12:33+08:00">2021-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7-%E5%BC%80%E6%BA%90%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">工具-开源库</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在文章stb库的使用中，提及的stb库的一些优点。它很实用，但是也有一些缺点。<br>在存图函数中，提供的可选参数，过于简单。<br>以下面的源码为例，存储bmp图像，无法指明像素深度，如果有存非unsigned 8 bit 像素。它使无法实现的。官方对于这个问题的态度也是：请使用其他库。因此，使用stb库并不是高枕无忧的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">STBIWDEF <span class="keyword">int</span> <span class="title">stbi_write_bmp</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> *filename, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> comp, <span class="keyword">const</span> <span class="keyword">void</span> *data)</span></span></span><br></pre></td></tr></table></figure>
+<p>如</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/26/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -297,8 +378,17 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-27 13:37:27" itemprop="dateModified" datetime="2021-01-27T13:37:27+08:00">2021-01-27</time>
+        <time title="修改时间：2021-02-07 16:23:48" itemprop="dateModified" datetime="2021-02-07T16:23:48+08:00">2021-02-07</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7-%E5%BC%80%E6%BA%90%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">工具-开源库</span></a>
+        </span>
+    </span>
 
   
 </div>
