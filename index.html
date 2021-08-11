@@ -209,7 +209,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -264,6 +264,145 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/11/opencv%E7%9A%84%E8%AE%A1%E6%97%B6%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.gif">
+      <meta itemprop="name" content="wangbianjiang">
+      <meta itemprop="description" content="一点一点写">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wbj的技术博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/11/opencv%E7%9A%84%E8%AE%A1%E6%97%B6%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">opencv的计时函数的使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-08-11 11:51:01 / 修改时间：19:23:16" itemprop="dateCreated datePublished" datetime="2021-08-11T11:51:01+08:00">2021-08-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>统计代码的运行时间的方式有多种，opencv库也提供了几种，使用方便，但是和其他计时函数有容易混淆的地方。</p>
+<h2 id="cv库计时函数介绍"><a href="#cv库计时函数介绍" class="headerlink" title="cv库计时函数介绍"></a>cv库计时函数介绍</h2><p>int64 getTickCount(void)  在window下得到性能计数器的值。<br>double getTickFrequency(void) 在window得到性能计数器的频率<br>使用如下代码计算时间。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> t = (<span class="keyword">double</span>)getTickCount();</span><br><span class="line"><span class="comment">// 某一段程序</span></span><br><span class="line">t = ((<span class="keyword">double</span>)getTickCount() - t)/getTickFrequency();</span><br></pre></td></tr></table></figure>
+<p>到此为止了，很简单了，得到了某段程序的运行时间。<br>还是有一个混淆点需要注意和提醒的。就是和GetTickCount()不小心写混了。</p>
+<h2 id="getTickCount-和GetTickCount-混淆与避免方式"><a href="#getTickCount-和GetTickCount-混淆与避免方式" class="headerlink" title="getTickCount()和GetTickCount()混淆与避免方式"></a>getTickCount()和GetTickCount()混淆与避免方式</h2><p>这个混淆一但写了可不容易发现。<br>前者是opencv的函数cv::getTickCount().得到性能计数器的值。<br>GetTickCount()是window的api，会返回window系统的时间。在window下，一旦误用，系统不会报错的。结果却是极具误导性的<br>它的精度不高10-16ms。既然返回的是自系统开始到调用时的时间，目前看文档它的值最多是49.7天，自然它也可以用来计时，不过精度不高。</p>
+<p>只要记得不用混用以及类型转换（要转换为double，见上面的例子代码）就不会出错。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/30/halcon-demo-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.gif">
+      <meta itemprop="name" content="wangbianjiang">
+      <meta itemprop="description" content="一点一点写">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wbj的技术博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/30/halcon-demo-1/" class="post-title-link" itemprop="url">halcon示例代码解析1：align_measurements</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-07-30 09:48:39 / 修改时间：10:26:49" itemprop="dateCreated datePublished" datetime="2021-07-30T09:48:39+08:00">2021-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这个例子用基于形状匹配来配准roi区域，为之后检查刮胡刀刀片缺陷检测工具准备的。<br>根据选择程序在两种模式下运行：full affine transformation或者using translate_measure</p>
+<p>代码流程如下</p>
+<ol>
+<li>USING_TRANSLATE_MEASURE := 0<br>改整数表示选用哪种模式，根据字面意思，默认是不使用translate_measure<br>通用程序不提，</li>
+<li>读取图像后使用get_image_pointer1获取图像数据第一个通道的地址，数据类型，宽，高<br>设置窗口大小，显示颜色等代码不提了</li>
+<li>指定两个正矩形框，合并成一个区域，裁剪下来对应区域，之后直接使用该区域生成形状模型，以用于匹配。生成模型的函数create_shape_model</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   

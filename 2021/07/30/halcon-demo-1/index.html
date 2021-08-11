@@ -22,18 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="一点一点写">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wbj的技术博客">
-<meta property="og:url" content="http://example.com/tags/stb%E5%BA%93-%E5%AD%98%E5%8F%96%E5%9B%BE%E5%83%8F/index.html">
+  <meta name="description" content="这个例子用基于形状匹配来配准roi区域，为之后检查刮胡刀刀片缺陷检测工具准备的。根据选择程序在两种模式下运行：full affine transformation或者using translate_measure 代码流程如下  USING_TRANSLATE_MEASURE :&#x3D; 0改整数表示选用哪种模式，根据字面意思，默认是不使用translate_measure通用程序不提， 读取图像后使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="halcon示例代码解析1：align_measurements">
+<meta property="og:url" content="http://example.com/2021/07/30/halcon-demo-1/index.html">
 <meta property="og:site_name" content="wbj的技术博客">
-<meta property="og:description" content="一点一点写">
+<meta property="og:description" content="这个例子用基于形状匹配来配准roi区域，为之后检查刮胡刀刀片缺陷检测工具准备的。根据选择程序在两种模式下运行：full affine transformation或者using translate_measure 代码流程如下  USING_TRANSLATE_MEASURE :&#x3D; 0改整数表示选用哪种模式，根据字面意思，默认是不使用translate_measure通用程序不提， 读取图像后使用">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-07-30T01:48:39.000Z">
+<meta property="article:modified_time" content="2021-07-30T02:26:49.090Z">
 <meta property="article:author" content="wangbianjiang">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/tags/stb%E5%BA%93-%E5%AD%98%E5%8F%96%E5%9B%BE%E5%83%8F/">
+<link rel="canonical" href="http://example.com/2021/07/30/halcon-demo-1/">
 
 
 <script class="page-configurations">
@@ -41,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>标签: stb库 存取图像 | wbj的技术博客</title>
+  <title>halcon示例代码解析1：align_measurements | wbj的技术博客</title>
   
 
 
@@ -260,73 +262,90 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
       
 
       
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h2 class="collection-header">stb库 存取图像
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/30/halcon-demo-1/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.gif">
+      <meta itemprop="name" content="wangbianjiang">
+      <meta itemprop="description" content="一点一点写">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wbj的技术博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          halcon示例代码解析1：align_measurements
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+
+      <time title="创建时间：2021-07-30 09:48:39 / 修改时间：10:26:49" itemprop="dateCreated datePublished" datetime="2021-07-30T09:48:39+08:00">2021-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>这个例子用基于形状匹配来配准roi区域，为之后检查刮胡刀刀片缺陷检测工具准备的。<br>根据选择程序在两种模式下运行：full affine transformation或者using translate_measure</p>
+<p>代码流程如下</p>
+<ol>
+<li>USING_TRANSLATE_MEASURE := 0<br>改整数表示选用哪种模式，根据字面意思，默认是不使用translate_measure<br>通用程序不提，</li>
+<li>读取图像后使用get_image_pointer1获取图像数据第一个通道的地址，数据类型，宽，高<br>设置窗口大小，显示颜色等代码不提了</li>
+<li>指定两个正矩形框，合并成一个区域，裁剪下来对应区域，之后直接使用该区域生成形状模型，以用于匹配。生成模型的函数create_shape_model</li>
+</ol>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-02-07T16:12:33+08:00"
-              content="2021-02-07">
-          02-07
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/07/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A82/" itemprop="url">
-            <span itemprop="name">stb库的使用2</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/01/github%E5%8D%9A%E5%AE%A2%E4%B9%A6%E5%86%99%E6%8A%80%E5%B7%A7%E6%B1%87%E6%80%BB%E8%AE%B0%E5%BD%95/" rel="prev" title="github博客书写技巧汇总记录">
+                  <i class="fa fa-chevron-left"></i> github博客书写技巧汇总记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/11/opencv%E7%9A%84%E8%AE%A1%E6%97%B6%E5%87%BD%E6%95%B0/" rel="next" title="opencv的计时函数的使用">
+                  opencv的计时函数的使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-01-26T15:37:06+08:00"
-              content="2021-01-26">
-          01-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/01/26/stb%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">stb库的使用</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
